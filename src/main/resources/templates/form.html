@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/layout :: head}"></head>
+<body>
+<header th:replace="~{layout/layout :: header}"></header>
+<div class="container mt-5">
+  <div class="col-lg-6 offset-lg-3">
+    <div class="card" >
+      <div class="card-body">
+        <h4 class="card-title" th:text="${titulo}">title</h4>
+        <div class="container">
+          <!--
+          <div th:object="${cliente}" th:remove="tag"  >
+            <ul th:if="${#fields.hasErrors('*')}"  class="alert alert-danger">
+              <li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+            </ul>
+          </div>-->
+          <form  th:action="@{/form}" th:object="${cliente}" method="post" enctype="multipart/form-data">
+            <div class="input-group mb-3">
+              <label for="nombre"></label>
+              <input type="text"
+                     th:field="*{nombre}" id="nombre" class="form-control" placeholder="Nombre" aria-describedby="helpId" th:errorclass="'form-control alert alert-primary'" />
+             <small  class="text-muted" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+            </div>
+            <div class="input-group mb-3">
+              <label for="apellido"></label>
+              <input type="text"
+                     th:field="*{apellido}" id="apellido" class="form-control" placeholder="Apellido" aria-describedby="helpId" th:errorclass="'form-control alert alert-primary'" />
+              <small  class="text-muted"  th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">Help text</small>
+            </div>
+            <div class="input-group mb-3">
+              <label for="email"></label>
+              <input type="email"
+                     th:field="*{email}" id="email" class="form-control" placeholder="Correo electronico" aria-describedby="helpId" th:errorclass="'form-control alert alert-primary'" />
+              <small  class="text-muted"  th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Help text</small>
+            </div>
+
+            <div class="input-group mb-3">
+              <label for="fecha"></label>
+              <input type="text"
+                     th:field="*{fechaCreacion}" id="fecha" class="form-control" placeholder="Fecha" aria-describedby="helpId" th:errorclass="'form-control alert alert-primary'" />
+              <small  class="text-muted"  th:if="${#fields.hasErrors('fechaCreacion')}" th:errors="*{fechaCreacion}">Help text</small>
+            </div>
+            <div class="input-group mb-3">
+              <label for="fecha"></label>
+              <input type="file" name="file" class="form-control" placeholder="Fecha">
+            </div>
+
+
+            <div class="input-group mb-3">
+              <button class="btn btn-primary" type="submit">
+                <i class="fa-sharp fa-solid fa-user-plus"></i>
+              </button>
+            </div>
+           <!-- <input type="hidden" class="form-control" th:field="*{id}" >-->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer th:replace="~{layout/layout :: footer}"></footer>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/layout :: head}"></head>
+<body>
+<header th:replace="~{layout/layout :: header}"></header>
+<div class="container">
+<h1 class="text-secundary border border-succes" th:text="${titulo}"></h1>
+    <a th:href="@{/form}" class="btn btn-success btb-xs">
+        <i class="fa-solid fa-plus"></i></a>
+    <table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>nombre</th>
+        <th>apellido</th>
+        <th>email</th>
+        <th>fecha</th>
+        <th>crear factura</th>
+        <th>editar</th>
+        <th>eliminar</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cliente: ${clientes}">
+        <td>
+            <a class="btn btn-primary btn-xs"
+               th:href="@{/ver/} + ${cliente.id}"
+               th:text="${cliente.id}"></a>
+        </td>
+        <td th:text="${cliente.nombre}"></td>
+        <td th:text="${cliente.apellido}"></td>
+        <td th:text="${cliente.email}"></td>
+        <td th:text="${cliente.fechaCreacion}"></td>
+        <td>
+            <a class="btn btn-success btn-xs"
+               th:href="@{'/factura/form/' + ${cliente.id}}">
+                <i class="fa-solid fa-cart-plus"></i>
+            </a>
+        </td>
+        <td><a  th:href="@{/form/} + ${cliente.id}">
+            <i class="fa-solid fa-user-pen"></i>
+        </a> </td>
+        <td><a  th:href="@{/eliminar/} + ${cliente.id}" onclick="return confirm('Esta seguro que quieres eliminar usuario ?')">
+            <i class="fa-solid fa-user-minus"></i>
+        </a> </td>
+    </tr>
+
+    </tbody>
+</table>
+    <nav th:replace="~{paginator-nav :: paginator}"></nav>
+</div>
+<footer th:replace="~{layout/layout :: footer}"></footer>
+</body>
+
+</html>
