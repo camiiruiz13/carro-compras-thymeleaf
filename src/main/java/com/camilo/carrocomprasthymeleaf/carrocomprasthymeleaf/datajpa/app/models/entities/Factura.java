@@ -36,7 +36,7 @@ public class Factura implements Serializable {
     private Cliente cliente;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "idFactura")
+    @JoinColumn(name = "idfactura")
     private List<ItemFactura> items;
 
 

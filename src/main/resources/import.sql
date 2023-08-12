@@ -58,11 +58,11 @@ INSERT  carrito.dbo.factura(id,descripcion,observacion, cliente_id ,fechacreacio
 SET IDENTITY_INSERT carrito.dbo.factura OFF
 GO
 
-SET IDENTITY_INSERT carrito.dbo.item_factura ON
-insert into carrito.dbo.item_factura(id,cantidad, id_factura,id_producto) VALUES(1,1, 1, 1),
+SET IDENTITY_INSERT carrito.dbo.itemfactura ON
+insert into carrito.dbo.itemfactura(id,cantidad, idfactura,idproducto) VALUES(1,1, 1, 1),
 (2,2, 1, 4),
 (3,1, 1, 5),
 (4,1, 1, 7),
 (5,3, 2, 6);
-SET IDENTITY_INSERT carrito.dbo.item_factura OFF
+SET IDENTITY_INSERT carrito.dbo.itemfactura OFF
 GO

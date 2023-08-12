@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-@Table(name = "itemFactura")
+@Table(name = "itemfactura")
 public class ItemFactura implements Serializable {
 
     @Id
@@ -20,7 +20,7 @@ public class ItemFactura implements Serializable {
     private Integer cantidad;
 
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="idProducto")
+    @JoinColumn(name="idproducto")
     private Producto producto;
 
     public Double calcularImporte() {
