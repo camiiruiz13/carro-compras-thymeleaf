@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html  xmlns:th="http://www.thymeleaf.org" >
 
 <head th:replace="~{layout/layout :: head}"></head>
 
@@ -47,8 +47,8 @@
                 </div>
             </div>
 
-            <table th:replace="~{factura/plantilla-items :: itemsFactura}"></table>
 
+            <table th:replace="~{factura/plantilla-items :: itemsFactura}"></table>
             <div class="table-responsive">
                 <table id="cargarItemsProductos" class="table table-primary">
                     <thead>
@@ -57,18 +57,22 @@
                             <th scope="col">Precio</th>
                             <th scope="col">Cantidad</th>
                             <th scope="col">Total</th>
+                            <th scope="col">Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
                     </tbody>
                 </table>
+                <!--span class="badge badge-pill badge-primary">0</span-->
+                <button type="button" class="btn btn-primary">
+                    Total:
+                     <span class="badge badge-light"  id="gran_total">0</span>
+                  </button>
             </div>
-            
 
             <div class="mb-3 row">
                 <div class="offset-sm-4 col-sm-8">
-                    <button type="submit" class="btn btn-primary"
-                    th:text="${titulo}"></button>
+                    <button type="submit" class="btn btn-primary" th:text="${titulo}"></button>
                 </div>
             </div>
         </form>
