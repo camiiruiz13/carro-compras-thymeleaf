@@ -1,4 +1,4 @@
-package com.camilo.carrocomprasthymeleaf.carrocomprasthymeleaf.datajpa.app.repository;
+package com.camilo.carrocomprasthymeleaf.carrocomprasthymeleaf.datajpa.app.repositories.producto;
 
 import com.camilo.carrocomprasthymeleaf.carrocomprasthymeleaf.datajpa.app.models.entities.Producto;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,5 +10,5 @@ import java.util.List;
 public interface IProductoRepository extends JpaRepository<Producto, Long> {
 
     @Query("select p from Producto p where p.nombre like %:term%")
-    List<Producto> buscarPorNombre(@Param("term") String term);
+     List<Producto> buscarPorNombre(@Param("term") String term);
 }

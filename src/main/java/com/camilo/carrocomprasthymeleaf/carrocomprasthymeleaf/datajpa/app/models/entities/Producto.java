@@ -3,16 +3,14 @@ package com.camilo.carrocomprasthymeleaf.carrocomprasthymeleaf.datajpa.app.model
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.io.Serializable;
 import java.util.Date;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "producto")
-public class Producto implements Serializable {
+public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -23,11 +21,11 @@ public class Producto implements Serializable {
     private Double precio;
 
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern="yyyy-MM-dd")
     @Column(name = "fechacreacion")
     private Date fechaCreacion;
+
     @PrePersist
-    public void  prePersist(){
+    public void prePersist() {
         fechaCreacion = new Date();
     }
 

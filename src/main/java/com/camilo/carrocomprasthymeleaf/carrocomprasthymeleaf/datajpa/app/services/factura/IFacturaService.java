@@ -4,5 +4,11 @@ import com.camilo.carrocomprasthymeleaf.carrocomprasthymeleaf.datajpa.app.models
 
 public interface IFacturaService {
 
-    void  saveFactura(Factura factura);
+    void saveFactura(Factura factura);
+
+    Factura findFacturaById(Long id);
+
+    void deleteFactura(Long id);
+
+
 }

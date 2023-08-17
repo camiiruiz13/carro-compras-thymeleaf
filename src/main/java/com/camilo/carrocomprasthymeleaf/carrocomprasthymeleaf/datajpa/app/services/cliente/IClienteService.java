@@ -14,7 +14,10 @@ public interface IClienteService {
 
     void save(Cliente cliente);
 
-    Cliente finbById(Long id);
+    Cliente findOne(Long id);
 
     void delete(Long id);
+
+
+
 }

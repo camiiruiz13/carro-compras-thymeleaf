@@ -1,12 +1,10 @@
 package com.camilo.carrocomprasthymeleaf.carrocomprasthymeleaf.datajpa.app.models.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,7 +13,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "factura")
-public class Factura implements Serializable {
+public class Factura {
 
 
     @Id
@@ -23,12 +21,12 @@ public class Factura implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @NotEmpty
     private String descripcion;
 
     private String observacion;
 
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern="yyyy-MM-dd")
     @Column(name = "fechacreacion")
     private Date fechaCreacion;
 
@@ -39,18 +37,12 @@ public class Factura implements Serializable {
     @JoinColumn(name = "idfactura")
     private List<ItemFactura> items;
 
-
     public Factura() {
-        this.items = new ArrayList<>();
+        this.items = new ArrayList<ItemFactura>();;
     }
 
-    @PrePersist
-    public void  prePersist(){
-        fechaCreacion = new Date();
-    }
-
-    public void addItemFactura(ItemFactura item){
-        items.add(item);
+    public void addItemFactura(ItemFactura item) {
+        this.items.add(item);
     }
 
     public Double getTotal() {

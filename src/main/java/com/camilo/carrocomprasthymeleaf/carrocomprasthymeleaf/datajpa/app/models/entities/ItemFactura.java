@@ -4,13 +4,12 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.Serializable;
-
 @Getter
 @Setter
 @Entity
 @Table(name = "itemfactura")
-public class ItemFactura implements Serializable {
+public class ItemFactura {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,12 +18,14 @@ public class ItemFactura implements Serializable {
 
     private Integer cantidad;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="idproducto")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idproducto")
     private Producto producto;
 
     public Double calcularImporte() {
         return cantidad.doubleValue() * producto.getPrecio();
     }
+
+
 
 }

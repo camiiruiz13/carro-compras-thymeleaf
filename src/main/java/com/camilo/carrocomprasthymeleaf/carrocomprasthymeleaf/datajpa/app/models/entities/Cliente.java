@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +16,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "cliente")
-public class Cliente implements Serializable {
+public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,33 +33,31 @@ public class Cliente implements Serializable {
     @Email
     private String email;
 
-
     @NotNull
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern="yyyy-MM-dd")
     @Column(name = "fechacreacion")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaCreacion;
-
-    @Column(name = "foto")
-    private String foto;
 
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Factura> facturas;
 
+    private String foto;
+
     public Cliente() {
-        this.facturas = new ArrayList<>();
+        this.facturas = new ArrayList<Factura>();;
     }
 
-    private void addFactura(Factura factura){
-        facturas.add(factura);
-    }
-
-    /*
     @PrePersist
-    public void  prePersist(){
+    public void prePersist() {
         fechaCreacion = new Date();
     }
 
+    public void addFactura(Factura factura) {
+        facturas.add(factura);
+    }
 
-     */
+
+
+
 }
