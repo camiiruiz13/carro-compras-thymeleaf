@@ -18,6 +18,8 @@ public interface IClienteService {
 
     void delete(Long id);
 
+    Cliente fetchByIdWithFacturas(Long id);
+
 
 
 }

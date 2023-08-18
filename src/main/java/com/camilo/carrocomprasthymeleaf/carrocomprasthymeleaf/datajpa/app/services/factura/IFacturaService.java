@@ -10,5 +10,7 @@ public interface IFacturaService {
 
     void deleteFactura(Long id);
 
+    Factura fetchFacturaByIDClienteWithItemFacturaWithProducto(Long id);
+
 
 }
