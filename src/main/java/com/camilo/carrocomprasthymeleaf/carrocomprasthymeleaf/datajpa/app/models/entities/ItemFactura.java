@@ -18,8 +18,9 @@ public class ItemFactura {
 
     private Integer cantidad;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idproducto")
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="idproducto" , referencedColumnName = "id"
+            , foreignKey = @ForeignKey(name = "FK_Producto_ItemFacturas"))
     private Producto producto;
 
     public Double calcularImporte() {

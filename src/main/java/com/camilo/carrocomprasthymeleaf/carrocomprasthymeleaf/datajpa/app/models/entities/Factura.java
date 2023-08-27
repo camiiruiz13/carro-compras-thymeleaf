@@ -31,14 +31,22 @@ public class Factura {
     private Date fechaCreacion;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idcliente" , referencedColumnName = "id"
+            , foreignKey = @ForeignKey(name = "FK_Cliente_Factura"))
     private Cliente cliente;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "idfactura")
+    @JoinColumn(name = "idfactura" , referencedColumnName = "id"
+            , foreignKey = @ForeignKey(name = "FK_ItemFactura_Factura"))
     private List<ItemFactura> items;
 
     public Factura() {
         this.items = new ArrayList<ItemFactura>();;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        fechaCreacion = new Date();
     }
 
     public void addItemFactura(ItemFactura item) {
