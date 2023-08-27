@@ -15,7 +15,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service("jpaUserDetailService")
 @Slf4j
@@ -34,21 +36,36 @@ public class JpaUserDetailService implements UserDetailsService {
             log.error("Error en el Login: no existe el usuario '" + username + "' en el sistema!");
             throw new UsernameNotFoundException("Username: " + username + " no existe en el sistema!");
         }
+        /*
 
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
         for(Rol role: usuario.getRoles()) {
             log.info("Role: ".concat(role.getAutorizado()));
             authorities.add(new SimpleGrantedAuthority(role.getAutorizado()));
-        }
+        }*/
 
+        /*
         if(authorities.isEmpty()) {
             log.error("Error en el Login: Usuario '" + username + "' no tiene roles asignados!");
             throw new UsernameNotFoundException("Error en el Login: usuario '" + username + "' no tiene roles asignados!");
         }
 
         return new User(usuario.getUsuario(), usuario.getClave(), usuario.getActivo(),
-                true, true, true, authorities);
+                true, true, true, authorities);*/
+
+        return  new User(usuario.getUsuario(), usuario.getClave(),
+                mapRolesToAuthorities(usuario.getRoles()));
+
+
+    }
+
+    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Rol> roles){
+        Collection<? extends GrantedAuthority> mapRoles = roles.stream()
+                .map(rol -> new SimpleGrantedAuthority(rol.getAutorizado()))
+                .collect(Collectors.toList());
+        return  mapRoles;
+
     }
 
     
