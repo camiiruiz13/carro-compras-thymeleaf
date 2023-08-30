@@ -3,6 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{layout/layout :: head}"></head>
 <body>
+<div id="i18n_eliminar_cliente" th:text="#{text.cliente.eliminarOk}" style="display: none;"></div>
 <header th:replace="~{layout/layout :: header}"></header>
 <div class="container">
 <h1 class="text-secundary border border-succes" th:text="${titulo}"></h1>
@@ -15,7 +16,7 @@
         <th th:text="#{text.cliente.nombre}">nombre</th>
         <th th:text="#{text.cliente.apellido}">apellido</th>
         <th th:text="#{text.cliente.email}">email</th>
-        <th th:text="#{text.cliente.createAt}">fecha</th>
+        <th th:text="#{text.cliente.fechaCreacion}">fecha</th>
         <th th:text="#{text.cliente.factura.crear}" sec:authorize="hasRole('ROLE_ADMIN')">crear factura</th>
         <th th:text="#{text.cliente.editar}" sec:authorize="hasRole('ROLE_ADMIN')">editar</th>
         <th th:text="#{text.cliente.eliminar}" sec:authorize="hasRole('ROLE_ADMIN')">eliminar</th>
@@ -43,7 +44,8 @@
             <i class="fa-solid fa-user-pen"></i>
         </a> </td>
         <td sec:authorize="hasRole('ROLE_ADMIN')">
-        <a  th:href="@{/eliminar/} + ${cliente.id}" onclick="return confirm('Esta seguro que quieres eliminar usuario ?')">
+        <a  th:href="@{/eliminar/} + ${cliente.id}"
+            onclick="return confirm(document.getElementById('i18n_eliminar_cliente').innerHTML);">
             <i class="fa-solid fa-user-minus"></i>
         </a> </td>
     </tr>
